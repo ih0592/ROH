@@ -2121,3 +2121,253 @@ input[type="date"]::-moz-calendar-picker-indicator {
         height: calc(100vh - 70px);
     }
 }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    /* Basis tekst en spacing */
+    body {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    section {
+        padding: 40px 0;
+    }
+
+    /* Headers en titels */
+    .section-header {
+        margin-bottom: 30px;
+    }
+
+    .section-header h2 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    .section-description {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    /* Hero sectie */
+    .hero-section {
+        padding: 60px 0 40px;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 32px;
+        margin-bottom: 15px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+
+    /* Proces stappen */
+    .process-steps {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .process-step {
+        padding: 20px;
+    }
+
+    .step-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+    }
+
+    /* Oorzaken sectie */
+    .causes-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .cause-card {
+        padding: 20px;
+    }
+
+    .cause-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+
+    /* Calculator sectie */
+    .calculator-container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .calculator-step {
+        padding: 20px 15px;
+    }
+
+    .question-title {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .radio-group label {
+        padding: 15px;
+        font-size: 16px;
+        min-height: 54px;
+    }
+
+    .calculator-navigation {
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .calculator-navigation button {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        min-height: 54px;
+    }
+
+    /* Contact formulier */
+    .contact-form-card {
+        padding: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 8px;
+        min-height: 54px;
+    }
+
+    /* Buttons */
+    .button {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        min-height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-section {
+        padding: 0 20px;
+    }
+
+    .footer-links a {
+        padding: 12px;
+        display: block;
+    }
+
+    /* Over Ons pagina */
+    .about-hero {
+        padding: 60px 0 40px;
+    }
+
+    .about-hero h1 {
+        font-size: 32px;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .team-member {
+        padding: 20px;
+    }
+
+    /* Diensten pagina */
+    .services-hero {
+        padding: 60px 0 40px;
+    }
+
+    .service-item {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .service-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .service-icon {
+        margin: 0 auto;
+    }
+
+    /* Touch optimalisaties */
+    a, button, input[type="submit"] {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    input, select, textarea {
+        -webkit-appearance: none;
+        border-radius: 8px;
+    }
+}
+
+/* iOS specifieke fixes */
+@supports (-webkit-touch-callout: none) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Extra kleine schermen */
+@media (max-width: 375px) {
+    .section-header h2 {
+        font-size: 24px;
+    }
+
+    .hero-content h1 {
+        font-size: 28px;
+    }
+
+    .calculator-container {
+        padding: 15px;
+    }
+
+    .radio-group label {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
