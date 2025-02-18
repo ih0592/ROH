@@ -454,59 +454,65 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navWrapper = document.querySelector('.nav-wrapper');
     
-    mobileMenuToggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navWrapper.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    });
+    if (mobileMenuToggle && navWrapper) {
+        mobileMenuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navWrapper.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
 
-    // Sluit menu bij klikken buiten menu
-    document.addEventListener('click', function(e) {
-        if (navWrapper.classList.contains('active') && 
-            !navWrapper.contains(e.target) && 
-            !mobileMenuToggle.contains(e.target)) {
-            mobileMenuToggle.classList.remove('active');
-            navWrapper.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-    });
-
-    // Calculator verbeteringen voor mobiel
-    const radioInputs = document.querySelectorAll('.radio-group input[type="radio"]');
-    radioInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            // Verwijder alle active classes
-            this.closest('.radio-group').querySelectorAll('label').forEach(label => {
-                label.classList.remove('active');
+        // Sluit menu bij klikken op link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuToggle.classList.remove('active');
+                navWrapper.classList.remove('active');
+                document.body.classList.remove('menu-open');
             });
-            // Voeg active class toe aan geselecteerde optie
-            if (this.checked) {
-                this.nextElementSibling.classList.add('active');
+        });
+    }
+
+    // Calculator functionaliteit
+    const calculatorSteps = document.querySelectorAll('.calculator-step');
+    const nextButtons = document.querySelectorAll('.calculator-navigation .next');
+    const prevButtons = document.querySelectorAll('.calculator-navigation .prev');
+    const progressBar = document.querySelector('.progress-bar .progress');
+
+    let currentStep = 0;
+
+    function updateStep(newStep) {
+        calculatorSteps.forEach((step, index) => {
+            step.classList.remove('active');
+            if (index === newStep) {
+                step.classList.add('active');
+            }
+        });
+
+        // Update progress bar
+        if (progressBar) {
+            const progress = ((newStep + 1) / calculatorSteps.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        currentStep = newStep;
+    }
+
+    nextButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (currentStep < calculatorSteps.length - 1) {
+                updateStep(currentStep + 1);
             }
         });
     });
 
-    // Smooth scroll naar volgende vraag
-    const calculatorButtons = document.querySelectorAll('.calculator-navigation button');
-    calculatorButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            setTimeout(() => {
-                const activeStep = document.querySelector('.calculator-step.active');
-                if (activeStep) {
-                    activeStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 100);
+    prevButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            if (currentStep > 0) {
+                updateStep(currentStep - 1);
+            }
         });
     });
 
-    // Touch feedback op knoppen
-    const buttons = document.querySelectorAll('button, .button');
-    buttons.forEach(button => {
-        button.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.98)';
-        });
-        button.addEventListener('touchend', function() {
-            this.style.transform = 'scale(1)';
-        });
-    });
+    // Initialize first step
+    updateStep(0);
 });
