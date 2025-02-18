@@ -486,18 +486,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Calculator functionaliteit
     const calculatorSteps = document.querySelectorAll('.calculator-step');
-    const nextButtons = document.querySelectorAll('.calculator-navigation .next');
-    const prevButtons = document.querySelectorAll('.calculator-navigation .prev');
-    
     if (calculatorSteps.length > 0) {
         let currentStep = 0;
 
         function updateStep(newStep) {
             calculatorSteps.forEach((step, index) => {
-                step.classList.remove('active');
-                if (index === newStep) {
-                    step.classList.add('active');
-                }
+                step.style.display = index === newStep ? 'block' : 'none';
             });
 
             // Update progress bar
@@ -508,15 +502,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             currentStep = newStep;
-
-            // Scroll naar boven van de nieuwe stap
-            window.scrollTo({
-                top: document.querySelector('.calculator-container').offsetTop - 80,
-                behavior: 'smooth'
-            });
         }
 
-        nextButtons.forEach(button => {
+        // Initialize eerste stap
+        updateStep(0);
+
+        // Navigatie knoppen
+        document.querySelectorAll('.calculator-navigation .next').forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep < calculatorSteps.length - 1) {
                     updateStep(currentStep + 1);
@@ -524,15 +516,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        prevButtons.forEach(button => {
+        document.querySelectorAll('.calculator-navigation .prev').forEach(button => {
             button.addEventListener('click', () => {
                 if (currentStep > 0) {
                     updateStep(currentStep - 1);
                 }
             });
         });
-
-        // Initialize eerste stap
-        updateStep(0);
     }
 });
