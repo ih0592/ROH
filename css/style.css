@@ -2010,28 +2010,65 @@ input[type="date"]::-moz-calendar-picker-indicator {
         width: 100%;
         background: white;
         z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
+    .header-content {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    /* Logo styling */
+    .logo img {
+        height: 35px;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    /* Hamburger Menu Button */
     .mobile-menu-toggle {
-        display: block;
-        background: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 44px;
+        height: 44px;
+        background: transparent;
         border: none;
-        padding: 10px;
+        padding: 8px;
+        cursor: pointer;
         z-index: 1001;
     }
 
     .mobile-menu-toggle span {
         display: block;
-        width: 25px;
+        width: 24px;
         height: 2px;
         background: #007bff;
-        margin: 5px 0;
-        transition: 0.3s;
-        border-radius: 2px;
+        margin: 2px 0;
+        transition: all 0.3s ease;
+        border-radius: 4px;
     }
 
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Navigation Menu */
     .nav-wrapper {
-        display: none;
         position: fixed;
         top: 70px;
         left: 0;
@@ -2039,30 +2076,33 @@ input[type="date"]::-moz-calendar-picker-indicator {
         height: calc(100vh - 70px);
         background: white;
         padding: 20px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
         overflow-y: auto;
         z-index: 999;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .nav-wrapper.active {
-        display: block;
+        transform: translateX(0);
     }
 
+    /* Navigation Links */
     .nav-menu {
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        margin-bottom: 30px;
+        gap: 12px;
+        margin-bottom: 25px;
     }
 
     .nav-menu a {
-        display: block;
-        padding: 15px;
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
         font-size: 16px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        text-align: center;
+        font-weight: 500;
         color: #2c3e50;
+        background: #f8f9fa;
+        border-radius: 12px;
         text-decoration: none;
         transition: all 0.3s ease;
     }
@@ -2072,189 +2112,74 @@ input[type="date"]::-moz-calendar-picker-indicator {
         color: white;
     }
 
-    /* Calculator Mobile Styling Update */
-    .calculator-section {
-        padding: 0;
-        margin-top: 70px;
-        background: #f8f9fa;
-    }
-
-    .calculator-container {
-        max-width: 100%;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        border-radius: 0;
-        background: transparent;
-    }
-
-    .calculator-step {
-        background: white;
-        margin: 15px;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .question-title {
-        font-size: 20px;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 20px;
-        line-height: 1.4;
-    }
-
-    .radio-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .radio-group label {
-        position: relative;
-        padding: 16px;
-        background: #f8f9fa;
-        border: 2px solid #e9ecef;
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: 500;
-        color: #2c3e50;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .radio-group input[type="radio"] {
-        position: absolute;
-        opacity: 0;
-    }
-
-    .radio-group input[type="radio"] + label::before {
-        content: '';
-        width: 22px;
-        height: 22px;
-        border: 2px solid #007bff;
-        border-radius: 50%;
-        margin-right: 12px;
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-    }
-
-    .radio-group input[type="radio"]:checked + label {
-        background: #007bff;
-        color: white;
-        border-color: #007bff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,123,255,0.2);
-    }
-
-    .radio-group input[type="radio"]:checked + label::before {
-        background: white;
-        border-color: white;
-    }
-
-    /* Progress Bar Styling */
-    .progress-container {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        z-index: 99;
-        background: white;
-        padding: 15px 15px 0;
-    }
-
-    .progress-bar {
-        height: 6px;
-        background: #e9ecef;
-        border-radius: 3px;
-        overflow: hidden;
-    }
-
-    .progress-bar .progress {
-        height: 100%;
-        background: #007bff;
-        border-radius: 3px;
-        transition: width 0.3s ease;
-    }
-
-    /* Navigation Buttons */
-    .calculator-navigation {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        padding: 15px;
-        background: white;
-        box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
-        display: flex;
-        gap: 10px;
-        z-index: 99;
-    }
-
-    .calculator-navigation button {
-        flex: 1;
-        padding: 16px;
-        border: none;
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-
-    .calculator-navigation button.prev {
-        background: #f8f9fa;
-        color: #2c3e50;
-    }
-
-    .calculator-navigation button.next {
-        background: #007bff;
-        color: white;
-    }
-
-    .calculator-navigation button:active {
+    .nav-menu a:active {
         transform: scale(0.98);
     }
 
-    /* Result Styling */
-    .calculator-result {
-        background: white;
-        margin: 15px;
-        padding: 25px;
+    /* CTA Section in Navigation */
+    .header-cta {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 0 20px 0;
+    }
+
+    .header-cta .phone-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 16px;
+        background: #f8f9fa;
         border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .result-amount {
-        font-size: 32px;
-        color: #007bff;
-        font-weight: 700;
-        margin: 20px 0;
-    }
-
-    .result-description {
         color: #2c3e50;
-        margin-bottom: 25px;
-        line-height: 1.6;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
     }
 
-    /* Spacing voor fixed elements */
-    main {
-        padding-bottom: 80px; /* Ruimte voor navigation buttons */
-        padding-top: 91px; /* Ruimte voor progress bar */
+    .header-cta .phone-link i {
+        color: #007bff;
     }
 
-    /* iOS Notch Fix */
-    @supports (padding-bottom: env(safe-area-inset-bottom)) {
-        .calculator-navigation {
-            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    .header-cta .button.primary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        background: #007bff;
+        color: white;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .header-cta .button.primary:active {
+        transform: scale(0.98);
+        background: #0056b3;
+    }
+
+    /* iOS Notch Support */
+    @supports (padding-top: env(safe-area-inset-top)) {
+        .header {
+            padding-top: env(safe-area-inset-top);
         }
-        
-        main {
-            padding-bottom: calc(80px + env(safe-area-inset-bottom));
+
+        .header-content {
+            height: calc(70px + env(safe-area-inset-top));
         }
+
+        .nav-wrapper {
+            top: calc(70px + env(safe-area-inset-top));
+            height: calc(100vh - 70px - env(safe-area-inset-top));
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    }
+
+    /* Prevent scrolling when menu is open */
+    body.menu-open {
+        overflow: hidden;
     }
 }
 
