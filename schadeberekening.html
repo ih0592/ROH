@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schadeberekening - Letselschade Calculator</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/calculator.js" defer></script>
+</head>
+<body>
+    <!-- Header/Navigatie -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <a href="index.html">Letselschade Calculator</a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/schadeberekening.html">Schadeberekening</a></li>
+                    <li><a href="over-ons.html">Over Ons</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="calculator-section">
+                <h1>Bereken uw letselschade</h1>
+                <p class="intro-text">Vul onderstaand formulier in voor een indicatie van uw schadevergoeding.</p>
+
+                <!-- Calculator Formulier -->
+                <form id="schadeCalculator" class="calculator-form">
+                    <div class="form-group">
+                        <label for="ongevalType">Type Ongeval:</label>
+                        <select name="ongevalType" id="ongevalType" required>
+                            <option value="">Selecteer type ongeval</option>
+                            <option value="verkeersongeval">Verkeersongeval</option>
+                            <option value="bedrijfsongeval">Bedrijfsongeval</option>
+                            <option value="medisch">Medische fout</option>
+                            <option value="overig">Overig ongeval</option>
+                        </select>
+                    </div>
+
+                    <!-- Basis velden -->
+                    <div class="form-group">
+                        <label for="letselErnst">Ernst van het letsel:</label>
+                        <select name="letselErnst" id="letselErnst" required>
+                            <option value="">Selecteer ernst letsel</option>
+                            <option value="licht">Licht letsel</option>
+                            <option value="matig">Matig letsel</option>
+                            <option value="zwaar">Zwaar letsel</option>
+                            <option value="blijvend">Blijvend letsel</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="duurKlachten">Duur van de klachten:</label>
+                        <select name="duurKlachten" id="duurKlachten" required>
+                            <option value="">Selecteer duur klachten</option>
+                            <option value="kort">Korter dan 3 maanden</option>
+                            <option value="middel">3-6 maanden</option>
+                            <option value="lang">6-12 maanden</option>
+                            <option value="blijvend">Langer dan 1 jaar/blijvend</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Selecteer uw klachten:</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="klachten" value="pijn"> Pijnklachten</label>
+                            <label><input type="checkbox" name="klachten" value="mobiliteit"> Verminderde mobiliteit</label>
+                            <label><input type="checkbox" name="klachten" value="psychisch"> Psychische klachten</label>
+                            <label><input type="checkbox" name="klachten" value="werk"> Arbeidsongeschiktheid</label>
+                            <label><input type="checkbox" name="klachten" value="dagelijks"> Problemen dagelijkse activiteiten</label>
+                        </div>
+                    </div>
+
+                    <!-- Detail secties -->
+                    <!-- Verkeersongeval Details -->
+                    <div id="verkeersongevalDetails" class="form-group details-section" style="display: none;">
+                        <h3>Details Verkeersongeval</h3>
+                        
+                        <!-- Snelheid -->
+                        <div class="sub-form-group">
+                            <label for="snelheid">Geschatte snelheid tijdens impact:</label>
+                            <select name="snelheid" id="snelheid">
+                                <option value="">Selecteer snelheid</option>
+                                <option value="laag">0-30 km/u</option>
+                                <option value="middel">31-50 km/u</option>
+                                <option value="hoog">51-80 km/u</option>
+                                <option value="zeer-hoog">Meer dan 80 km/u</option>
+                            </select>
+                        </div>
+
+                        <!-- Type verkeersdeelnemer -->
+                        <div class="sub-form-group">
+                            <label for="verkeersdeelnemer">Type verkeersdeelnemer:</label>
+                            <select name="verkeersdeelnemer" id="verkeersdeelnemer">
+                                <option value="">Selecteer type</option>
+                                <option value="voetganger">Voetganger</option>
+                                <option value="fietser">Fietser</option>
+                                <option value="motorrijder">Motorrijder</option>
+                                <option value="autobestuurder">Autobestuurder</option>
+                                <option value="passagier">Passagier</option>
+                            </select>
+                        </div>
+
+                        <!-- Voertuigschade -->
+                        <div class="sub-form-group">
+                            <label>Type voertuigschade:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="voertuigSchade" value="total-loss"> Total loss</label>
+                                <label><input type="checkbox" name="voertuigSchade" value="zware-schade"> Zware schade</label>
+                                <label><input type="checkbox" name="voertuigSchade" value="middel-schade"> Middelmatige schade</label>
+                                <label><input type="checkbox" name="voertuigSchade" value="lichte-schade"> Lichte schade</label>
+                            </div>
+                        </div>
+
+                        <!-- Waarde voertuig -->
+                        <div class="sub-form-group">
+                            <label for="voertuigWaarde">Waarde voertuig voor ongeval (€):</label>
+                            <input type="number" name="voertuigWaarde" id="voertuigWaarde" placeholder="Bijv. 15000" min="0" step="100">
+                        </div>
+
+                        <!-- Schadelocatie -->
+                        <div class="sub-form-group">
+                            <label>Locatie van de schade:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="schadeLocatie" value="front"> Voorzijde</label>
+                                <label><input type="checkbox" name="schadeLocatie" value="rear"> Achterzijde</label>
+                                <label><input type="checkbox" name="schadeLocatie" value="left"> Linkerzijde</label>
+                                <label><input type="checkbox" name="schadeLocatie" value="right"> Rechterzijde</label>
+                                <label><input type="checkbox" name="schadeLocatie" value="roof"> Dak</label>
+                            </div>
+                        </div>
+
+                        <!-- Aanvullende factoren -->
+                        <div class="sub-form-group">
+                            <label>Aanvullende factoren:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="aanvullend" value="airbag"> Airbags uitgeklapt</label>
+                                <label><input type="checkbox" name="aanvullend" value="beknelling"> Beknelling</label>
+                                <label><input type="checkbox" name="aanvullend" value="hulpdiensten"> Hulpdiensten ter plaatse</label>
+                                <label><input type="checkbox" name="aanvullend" value="ziekenhuis"> Ziekenhuisopname</label>
+                                <label><input type="checkbox" name="aanvullend" value="whiplash"> Whiplash klachten</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bedrijfsongeval Details -->
+                    <div id="bedrijfsongevalDetails" class="form-group details-section" style="display: none;">
+                        <h3>Details Bedrijfsongeval</h3>
+                        
+                        <div class="sub-form-group">
+                            <label for="werkType">Type werk tijdens ongeval:</label>
+                            <select name="werkType" id="werkType">
+                                <option value="">Selecteer type werk</option>
+                                <option value="kantoor">Kantoorwerk</option>
+                                <option value="productie">Productiewerk</option>
+                                <option value="bouw">Bouwwerkzaamheden</option>
+                                <option value="transport">Transport/Logistiek</option>
+                                <option value="zorg">Zorg</option>
+                            </select>
+                        </div>
+
+                        <div class="sub-form-group">
+                            <label for="werkOmstandigheden">Werkomstandigheden:</label>
+                            <select name="werkOmstandigheden" id="werkOmstandigheden">
+                                <option value="">Selecteer werkomstandigheden</option>
+                                <option value="goed">Goede werkomstandigheden</option>
+                                <option value="matig">Matige werkomstandigheden</option>
+                                <option value="slecht">Slechte werkomstandigheden</option>
+                            </select>
+                        </div>
+
+                        <div class="sub-form-group">
+                            <label for="veiligheidsmaatregelen">Veiligheidsmaatregelen aanwezig:</label>
+                            <select name="veiligheidsmaatregelen" id="veiligheidsmaatregelen">
+                                <option value="">Selecteer veiligheidsmaatregelen</option>
+                                <option value="volledig">Volledige veiligheidsmaatregelen</option>
+                                <option value="beperkt">Beperkte veiligheidsmaatregelen</option>
+                                <option value="onvoldoende">Onvoldoende veiligheidsmaatregelen</option>
+                            </select>
+                        </div>
+
+                        <div class="sub-form-group">
+                            <label for="maandinkomen">Maandelijks bruto inkomen (€):</label>
+                            <input type="number" name="maandinkomen" id="maandinkomen" placeholder="Bijv. 3000" min="0" step="100">
+                        </div>
+
+                        <div class="sub-form-group">
+                            <label>Aanvullende factoren:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="bedrijfsFactoren" value="overuren"> Overuren/Overbelasting</label>
+                                <label><input type="checkbox" name="bedrijfsFactoren" value="instructie"> Onvoldoende instructie</label>
+                                <label><input type="checkbox" name="bedrijfsFactoren" value="herhaling"> Herhalend ongeval</label>
+                                <label><input type="checkbox" name="bedrijfsFactoren" value="melding"> Eerder gemeld risico</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medische Fout Details -->
+                    <div id="medischDetails" class="form-group details-section" style="display: none;">
+                        <h3>Details Medische Fout</h3>
+                        
+                        <div class="sub-form-group">
+                            <label for="medischType">Type medische fout:</label>
+                            <select name="medischType" id="medischType">
+                                <option value="">Selecteer type fout</option>
+                                <option value="diagnose">Verkeerde/gemiste diagnose</option>
+                                <option value="behandeling">Verkeerde behandeling</option>
+                                <option value="medicatie">Medicatiefout</option>
+                                <option value="operatie">Operatiefout</option>
+                                <option value="nazorg">Onvoldoende nazorg</option>
+                            </select>
+                        </div>
+
+                        <div class="sub-form-group">
+                            <label for="zorginstelling">Type zorginstelling:</label>
+                            <select name="zorginstelling" id="zorginstelling">
+                                <option value="">Selecteer type instelling</option>
+                                <option value="ziekenhuis">Ziekenhuis</option>
+                                <option value="huisarts">Huisartsenpraktijk</option>
+                                <option value="specialist">Specialistenpraktijk</option>
+                                <option value="tandarts">Tandartspraktijk</option>
+                                <option value="fysio">Fysiotherapiepraktijk</option>
+                            </select>
+                        </div>
+
+                        <div class="sub-form-group">
+                            <label for="behandelkosten">Extra medische kosten tot nu toe (€):</label>
+                            <input type="number" name="behandelkosten" id="behandelkosten" placeholder="Bijv. 5000" min="0" step="100">
+                        </div>
+
+                        <div class="sub-form-group">
+                            <label>Gevolgen:</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="medischeGevolgen" value="herstel"> Extra herstelbehandelingen nodig</label>
+                                <label><input type="checkbox" name="medischeGevolgen" value="blijvend"> Blijvende gevolgen</label>
+                                <label><input type="checkbox" name="medischeGevolgen" value="operatie"> Extra operatie(s) nodig</label>
+                                <label><input type="checkbox" name="medischeGevolgen" value="medicatie"> Langdurig medicijngebruik</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit knop -->
+                    <div class="form-group">
+                        <button type="submit" class="button primary">Bereken Schadevergoeding</button>
+                    </div>
+                </form>
+
+                <!-- Resultaat weergave -->
+                <div id="calculatorResult" class="calculator-result" style="display: none;">
+                    <h3>Geschatte Schadevergoeding</h3>
+                    <div class="result-content">
+                        <p class="result-range">
+                            Tussen € <span id="minBedrag">0</span> en € <span id="maxBedrag">0</span>
+                        </p>
+                        <p class="result-disclaimer">
+                            * Dit is een indicatie. Het werkelijke bedrag kan afwijken en is afhankelijk van vele factoren.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <!-- Footer content -->
+        </div>
+    </footer>
+</body>
+</html> 

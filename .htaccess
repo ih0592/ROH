@@ -1,0 +1,12 @@
+# Voeg dit toe aan je .htaccess bestand als je Apache gebruikt
+Options +FollowSymLinks
+RewriteEngine On
+
+# Zorg dat .html bestanden worden herkend
+AddType text/html .html
+
+# Sta directe toegang toe tot HTML bestanden
+<Files *.html>
+    Order Allow,Deny
+    Allow from all
+</Files> 
