@@ -455,7 +455,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navWrapper = document.querySelector('.nav-wrapper');
     
     if (mobileMenuToggle && navWrapper) {
-        mobileMenuToggle.addEventListener('click', function() {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
             this.classList.toggle('active');
             navWrapper.classList.toggle('active');
             document.body.classList.toggle('menu-open');
@@ -470,49 +471,68 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.classList.remove('menu-open');
             });
         });
+
+        // Sluit menu bij klikken buiten menu
+        document.addEventListener('click', function(e) {
+            if (navWrapper.classList.contains('active') &&
+                !navWrapper.contains(e.target) &&
+                !mobileMenuToggle.contains(e.target)) {
+                mobileMenuToggle.classList.remove('active');
+                navWrapper.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
     }
 
     // Calculator functionaliteit
     const calculatorSteps = document.querySelectorAll('.calculator-step');
     const nextButtons = document.querySelectorAll('.calculator-navigation .next');
     const prevButtons = document.querySelectorAll('.calculator-navigation .prev');
-    const progressBar = document.querySelector('.progress-bar .progress');
+    
+    if (calculatorSteps.length > 0) {
+        let currentStep = 0;
 
-    let currentStep = 0;
+        function updateStep(newStep) {
+            calculatorSteps.forEach((step, index) => {
+                step.classList.remove('active');
+                if (index === newStep) {
+                    step.classList.add('active');
+                }
+            });
 
-    function updateStep(newStep) {
-        calculatorSteps.forEach((step, index) => {
-            step.classList.remove('active');
-            if (index === newStep) {
-                step.classList.add('active');
+            // Update progress bar
+            const progress = document.querySelector('.progress-bar .progress');
+            if (progress) {
+                const percentage = ((newStep + 1) / calculatorSteps.length) * 100;
+                progress.style.width = `${percentage}%`;
             }
-        });
 
-        // Update progress bar
-        if (progressBar) {
-            const progress = ((newStep + 1) / calculatorSteps.length) * 100;
-            progressBar.style.width = `${progress}%`;
+            currentStep = newStep;
+
+            // Scroll naar boven van de nieuwe stap
+            window.scrollTo({
+                top: document.querySelector('.calculator-container').offsetTop - 80,
+                behavior: 'smooth'
+            });
         }
 
-        currentStep = newStep;
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (currentStep < calculatorSteps.length - 1) {
+                    updateStep(currentStep + 1);
+                }
+            });
+        });
+
+        prevButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    updateStep(currentStep - 1);
+                }
+            });
+        });
+
+        // Initialize eerste stap
+        updateStep(0);
     }
-
-    nextButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (currentStep < calculatorSteps.length - 1) {
-                updateStep(currentStep + 1);
-            }
-        });
-    });
-
-    prevButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            if (currentStep > 0) {
-                updateStep(currentStep - 1);
-            }
-        });
-    });
-
-    // Initialize first step
-    updateStep(0);
 });
