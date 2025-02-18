@@ -459,15 +459,14 @@ main {
 
 /* Calculator Styling */
 .calculator-section {
-    background: var(--gray-light);
-    padding: 80px 0;
+    padding: 60px 0;
 }
 
 .calculator-container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 40px;
-    background: var(--white);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
@@ -792,8 +791,12 @@ select:focus {
 /* Responsive Design */
 @media (max-width: 768px) {
     .calculator-container {
-        padding: 20px;
-        margin: 20px;
+        padding: 0;
+        margin-top: 70px;
+        max-width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        background: transparent;
     }
 
     .calculator-steps {
@@ -2071,54 +2074,112 @@ input[type="date"]::-moz-calendar-picker-indicator {
 
     /* Calculator Mobile Styling Update */
     .calculator-section {
-        padding: 20px 0;
+        padding: 0;
         margin-top: 70px;
+        background: #f8f9fa;
     }
 
     .calculator-container {
-        padding: 15px;
+        max-width: 100%;
         margin: 0;
-        border-radius: 12px;
+        padding: 0;
         box-shadow: none;
+        border-radius: 0;
+        background: transparent;
     }
 
     .calculator-step {
-        padding: 15px 10px;
-        margin-bottom: 60px;
+        background: white;
+        margin: 15px;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
     .question-title {
-        font-size: 18px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #2c3e50;
         margin-bottom: 20px;
         line-height: 1.4;
-        color: #2c3e50;
     }
 
     .radio-group {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
 
     .radio-group label {
-        width: 100%;
+        position: relative;
         padding: 16px;
+        background: #f8f9fa;
+        border: 2px solid #e9ecef;
+        border-radius: 12px;
         font-size: 16px;
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-        background: #fff;
+        font-weight: 500;
+        color: #2c3e50;
+        transition: all 0.3s ease;
         display: flex;
         align-items: center;
-        min-height: 54px;
+        cursor: pointer;
+    }
+
+    .radio-group input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+    }
+
+    .radio-group input[type="radio"] + label::before {
+        content: '';
+        width: 22px;
+        height: 22px;
+        border: 2px solid #007bff;
+        border-radius: 50%;
+        margin-right: 12px;
         transition: all 0.3s ease;
+        flex-shrink: 0;
     }
 
     .radio-group input[type="radio"]:checked + label {
         background: #007bff;
         color: white;
         border-color: #007bff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,123,255,0.2);
     }
 
+    .radio-group input[type="radio"]:checked + label::before {
+        background: white;
+        border-color: white;
+    }
+
+    /* Progress Bar Styling */
+    .progress-container {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        z-index: 99;
+        background: white;
+        padding: 15px 15px 0;
+    }
+
+    .progress-bar {
+        height: 6px;
+        background: #e9ecef;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+    .progress-bar .progress {
+        height: 100%;
+        background: #007bff;
+        border-radius: 3px;
+        transition: width 0.3s ease;
+    }
+
+    /* Navigation Buttons */
     .calculator-navigation {
         position: fixed;
         bottom: 0;
@@ -2126,19 +2187,20 @@ input[type="date"]::-moz-calendar-picker-indicator {
         width: 100%;
         padding: 15px;
         background: white;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
         display: flex;
         gap: 10px;
-        z-index: 100;
+        z-index: 99;
     }
 
     .calculator-navigation button {
         flex: 1;
-        padding: 15px;
-        font-size: 16px;
+        padding: 16px;
         border: none;
-        border-radius: 8px;
-        min-height: 54px;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
     }
 
     .calculator-navigation button.prev {
@@ -2151,25 +2213,47 @@ input[type="date"]::-moz-calendar-picker-indicator {
         color: white;
     }
 
-    /* Progress bar styling */
-    .progress-bar {
-        height: 6px;
-        border-radius: 3px;
-        margin: 15px 0;
-        background: #f0f0f0;
+    .calculator-navigation button:active {
+        transform: scale(0.98);
     }
 
-    .progress-bar .progress {
-        height: 100%;
-        background: #007bff;
-        border-radius: 3px;
-        transition: width 0.3s ease;
+    /* Result Styling */
+    .calculator-result {
+        background: white;
+        margin: 15px;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    /* iOS fixes */
+    .result-amount {
+        font-size: 32px;
+        color: #007bff;
+        font-weight: 700;
+        margin: 20px 0;
+    }
+
+    .result-description {
+        color: #2c3e50;
+        margin-bottom: 25px;
+        line-height: 1.6;
+    }
+
+    /* Spacing voor fixed elements */
+    main {
+        padding-bottom: 80px; /* Ruimte voor navigation buttons */
+        padding-top: 91px; /* Ruimte voor progress bar */
+    }
+
+    /* iOS Notch Fix */
     @supports (padding-bottom: env(safe-area-inset-bottom)) {
         .calculator-navigation {
             padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+        
+        main {
+            padding-bottom: calc(80px + env(safe-area-inset-bottom));
         }
     }
 }
