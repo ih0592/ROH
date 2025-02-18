@@ -8,19 +8,137 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- Zelfde header als over-ons.html maar met diensten.html als active -->
     <header class="header">
-        <!-- Kopieer de header van over-ons.html en verander de active class -->
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="img/logo.png" alt="Recht op Herstel">
+                        <span class="logo-text">Recht op Herstel</span>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="nav-wrapper">
+                    <nav class="main-nav">
+                        <ul class="nav-menu">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="over-ons.html">Over Ons</a></li>
+                            <li><a href="diensten.html" class="active">Diensten</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="header-cta">
+                        <a href="tel:020-1234567" class="phone-link">
+                            <i class="fas fa-phone"></i>
+                            <span>020-1234567</span>
+                        </a>
+                        <a href="contact.html" class="button primary">Gratis Advies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main>
-        <!-- Bestaande content blijft hetzelfde -->
+        <section class="services-hero">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h1>Onze Diensten</h1>
+                    <p>Wij staan voor u klaar met professionele juridische bijstand bij letselschade</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section">
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-car-crash"></i>
+                        </div>
+                        <h3>Verkeersongevallen</h3>
+                        <p>Professionele hulp bij letselschade door verkeersongevallen. Wij zorgen voor een eerlijke schadevergoeding.</p>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>Bedrijfsongevallen</h3>
+                        <p>Deskundige bijstand bij letselschade door ongevallen op de werkvloer of tijdens werkzaamheden.</p>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3>Medische Fouten</h3>
+                        <p>Specialistische hulp bij letselschade door medische fouten en nalatigheid in de gezondheidszorg.</p>
+                    </div>
+
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>Ongevallen in Openbare Ruimte</h3>
+                        <p>Juridische ondersteuning bij letselschade door ongevallen in winkels, op straat of in andere openbare ruimtes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content text-center">
+                    <h2>Gratis Adviesgesprek</h2>
+                    <p>Wilt u weten wat wij voor u kunnen betekenen? Neem vrijblijvend contact met ons op.</p>
+                    <a href="contact.html" class="button primary">Contact Opnemen</a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="footer">
-        <!-- Bestaande footer code blijft hetzelfde -->
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-phone"></i> 020-1234567</li>
+                        <li><i class="fas fa-envelope"></i> info@rechtopherstel.nl</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Amsterdam, Nederland</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="over-ons.html">Over Ons</a></li>
+                        <li><a href="diensten.html">Diensten</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Volg Ons</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Recht op Herstel. Alle rechten voorbehouden.</p>
+            </div>
+        </div>
     </footer>
-    
+
     <script src="js/main.js"></script>
 </body>
 </html> 
